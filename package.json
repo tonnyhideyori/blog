@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "this is for advance nodejs training",
   "main": "index.js",
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -21,12 +29,16 @@
   },
   "homepage": "https://github.com/tonnyhideyori/blog#readme",
   "dependencies": {
+    "aws-sdk": "^2.643.0",
     "bcrypt": "^4.0.1",
-    "concurrent": "^0.3.2",
+    "concurrently": "^5.1.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
     "mongoose": "^5.9.5",
-    "redis": "^3.0.2"
+    "redis": "^3.0.2",
+    "uuid": "^7.0.2"
   }
 }
