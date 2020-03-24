@@ -15,4 +15,9 @@ module.exports = app => {
     blog = await blog.save();
     res.send(blog);
   });
+    app.get('/api/allblog',reqAuth,  async (req, res) => {
+        const allblogs = await Blog.find()
+        res.send(allblogs)
+    })
 };
+
