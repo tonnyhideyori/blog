@@ -24,7 +24,7 @@ export const signin = (formProps, callback) => async (dispatch)=> {
 }
 export const fetch = () => async dispatch => {
     try {
-        const res = await axios.get('http://localhost:5600/api/blog')
+        const res = await axios.get('http://localhost:5600/api/allblog')
         dispatch({
             type: FETCH_CONTENT,
             payload:res.data
@@ -62,4 +62,18 @@ export const signout = () => dispatch=> {
         payload:null
     })
 }
-
+export const profile = () => async dispatch => {
+    try {
+        const res = await axios.get("http://localhost:5600/api/blog"); 
+        dispatch({
+            type: FETCH_CONTENT,
+            payload:res.data
+        })
+    } catch (error) {
+        dispatch({
+            type: FETCH_ERROR,
+            payload:error.response.data
+        })
+    }
+    
+}

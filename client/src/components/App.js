@@ -5,6 +5,7 @@ import Landing from './Landing'
 import {BrowserRouter,Route} from 'react-router-dom'
 import Signin from './Signin';
 import Signup from "./Signup"
+import Profile from './Profile'
 
 class App extends Component{ 
   render() {
@@ -16,7 +17,8 @@ class App extends Component{
           <Route exact path="/" component={Landing} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/signin" component={Signin} />
-            <Route exact path="/signup" component={Signup}/>
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/profile" component={Profile}/>
             </div>
         </BrowserRouter>
       </div>

@@ -30,7 +30,7 @@ class Header extends Component{
               <div className="collapse navbar-collapse">
                 <ul className="nav navbar-nav navbar-right">
                   <li>
-                    <Link to="/">
+                    <Link to="/profile">
                       {" "}
                       <i className="glyphicon glyphicon-user"> </i>{" "}
                       {this.renderUser()}
