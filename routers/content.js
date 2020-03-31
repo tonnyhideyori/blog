@@ -10,9 +10,11 @@ module.exports = app => {
     let blog = new Blog({
       title: req.body.title,
       content: req.body.content,
-      _user: req.body.id
+      _user: req.body.id,
+      imageUrl:req.body.imageUrl
     });
-    blog = await blog.save();
+    await blog.save()
+    blog = await Blog.find({ _user: req.id._id });
     res.send(blog);
   });
     app.get('/api/allblog',reqAuth,  async (req, res) => {

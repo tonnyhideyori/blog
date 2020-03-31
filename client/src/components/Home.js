@@ -6,6 +6,19 @@ class Home extends Component {
   componentDidMount() {
       this.props.fetch();
   }
+  renderImage(url) {
+
+    if (url) {
+      return (
+        <img
+          src={
+            "https://blogbacket.s3.eu-west-3.amazonaws.com/" +
+            url
+          }
+        />
+      );
+    }
+  }
   renderContent() {
     let contents = this.props.content.map(content => {
       return (
@@ -22,6 +35,7 @@ class Home extends Component {
             </header>
             <div className="w3-container w3-khaki">
               <p>{content.content}</p>
+              {this.renderImage(content.imageUrl)}
             </div>
           </div>
         </div>

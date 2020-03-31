@@ -6,6 +6,7 @@ import {BrowserRouter,Route} from 'react-router-dom'
 import Signin from './Signin';
 import Signup from "./Signup"
 import Profile from './Profile'
+import Blog from './Blog';
 
 class App extends Component{ 
   render() {
@@ -18,7 +19,8 @@ class App extends Component{
             <Route exact path="/home" component={Home} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path ="/blog" component={Blog}/>
             </div>
         </BrowserRouter>
       </div>
