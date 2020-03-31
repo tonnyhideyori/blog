@@ -7,12 +7,15 @@ import {
   BLOG_POST
 } from "./types";
 
-axios.defaults.headers.common["token"] = localStorage.getItem("token");
+axios.defaults.headers.common["Token"] = localStorage.getItem("token");
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export const signin = (formProps, callback) => async dispatch => {
   try {
-    const res = await axios.post("/api/signin", formProps);
+    const res = await axios.post(
+      "/api/signin",
+      formProps
+    );
     console.log(res.data.user);
     localStorage.setItem("user", JSON.stringify(res.data));
     localStorage.setItem("token", res.data.token);
@@ -82,9 +85,12 @@ export const profile = () => async dispatch => {
   }
 };
 export const blog = (formProps, file, callback) => async () => {
-  const preUrl = await axios.get('/api/upload')
+  const preUrl = await axios.get("/api/upload");
     await axios.put(preUrl.data.url, file, { headers: { 'Content-Type': file.type } })
   
-    await axios.post("/api/post", {...formProps,imageUrl:preUrl.data.key});
+    await axios.post("/api/post", {
+      ...formProps,
+      imageUrl: preUrl.data.key
+    });
   callback();
 };
