@@ -16,5 +16,14 @@ app.use(express.urlencoded({ extended: true }))
 require('./routers/auth')(app)
 require('./routers/content.js')(app)
 require('./routers/upload')(app)
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/bluid"));
+  const path = require('path')
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname,"client","build","index.html"))
+  })
+}
+
 const PORT = process.env.PORT || 5600
 app.listen(PORT,()=>console.log(`listening to port : ${PORT}`))

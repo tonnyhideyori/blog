@@ -12,7 +12,7 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export const signin = (formProps, callback) => async dispatch => {
   try {
-    const res = await axios.post("http://localhost:5600/api/signin", formProps);
+    const res = await axios.post("/api/signin", formProps);
     console.log(res.data.user);
     localStorage.setItem("user", JSON.stringify(res.data));
     localStorage.setItem("token", res.data.token);
@@ -30,7 +30,7 @@ export const signin = (formProps, callback) => async dispatch => {
 };
 export const fetch = () => async dispatch => {
   try {
-    const res = await axios.get("http://localhost:5600/api/allblog");
+    const res = await axios.get("/api/allblog");
     dispatch({
       type: FETCH_CONTENT,
       payload: res.data
@@ -44,7 +44,7 @@ export const fetch = () => async dispatch => {
 };
 export const signup = (formPros, callback) => async dispatch => {
   try {
-    const res = await axios.post("http://localhost:5600/api/signup", formPros);
+    const res = await axios.post("/api/signup", formPros);
     localStorage.setItem("user", JSON.stringify(res.data));
     localStorage.setItem("token", JSON.stringify(res.data.token));
     dispatch({
@@ -69,7 +69,7 @@ export const signout = () => dispatch => {
 };
 export const profile = () => async dispatch => {
   try {
-    const res = await axios.get("http://localhost:5600/api/blog");
+    const res = await axios.get("/api/blog");
     dispatch({
       type: FETCH_CONTENT,
       payload: res.data
@@ -81,10 +81,10 @@ export const profile = () => async dispatch => {
     });
   }
 };
-export const blog = (formProps, file, callback) => async dispatch => {
-  const preUrl = await axios.get('http://localhost:5600/api/upload')
+export const blog = (formProps, file, callback) => async () => {
+  const preUrl = await axios.get('/api/upload')
     await axios.put(preUrl.data.url, file, { headers: { 'Content-Type': file.type } })
   
-    await axios.post("http://localhost:5600/api/post", {...formProps,imageUrl:preUrl.data.key});
+    await axios.post("/api/post", {...formProps,imageUrl:preUrl.data.key});
   callback();
 };
