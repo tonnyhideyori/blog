@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actions from "../actions"
-
+import {Link} from 'react-router-dom'
 class Profile extends Component {
   componentDidMount() {
     this.props.profile();
@@ -9,7 +9,7 @@ class Profile extends Component {
   renderContent() {
     let contents = this.props.content.map(content => {
       return (
-        <div className="col-sm-4" key={content._id}>
+        <div className="col-sm-12" key={content._id}>
           <div
             className="w3-crd-4"
             style={{ marginRight: "2px", marginBottom: "10px" }}
@@ -36,6 +36,14 @@ class Profile extends Component {
       <div>
         this profile
         <div>{this.renderContent()}</div>
+        <Link to="/blog">
+          <button
+            className="w3-button w3-circle w3-black w3-xxxlarge"
+            style={{ position: "fixed", bottom: "5px", right: "1px" }}
+          >
+            <b>+</b>
+          </button>
+        </Link>
       </div>
     );
   }

@@ -3,14 +3,16 @@ const reqAuth = require("../middleware/reqAuth");
 
 module.exports = app => {
     app.get("/api/blog", reqAuth, async (req, res) => {
-    const blogs = await Blog.find({ _user: req.id._id });
+      const blogs = await Blog.find({ _user: req.id._id });
+      console.log(req.id._id)
     res.send(blogs);
   });
   app.post("/api/post", reqAuth, async (req, res) => {
+    
     let blog = new Blog({
       title: req.body.title,
       content: req.body.content,
-      _user: req.body.id,
+      _user: req.id._id,
       imageUrl:req.body.imageUrl
     });
     await blog.save()

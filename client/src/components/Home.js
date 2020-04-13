@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../actions";
+import {Link} from 'react-router-dom'
 
 class Home extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class Home extends Component {
   renderContent() {
     let contents = this.props.content.map(content => {
       return (
-        <div className="col-sm-4" key={content._id}>
+        <div className="col-sm-12" key={content._id}>
           <div
             className="w3-crd-4"
             style={{ marginRight: "2px", marginBottom: "10px" }}
@@ -47,8 +48,10 @@ class Home extends Component {
     console.log(this.props.content);
     return (
       <div>
-        this home
-        <div>{this.renderContent()}</div>
+        {this.renderContent()}
+        <Link to="/blog">
+          <button className="w3-button w3-circle w3-black w3-xxxlarge" style={{ position: "fixed", bottom: "5px", right: "1px" }}><b>+</b></button>
+          </Link>
       </div>
     );
   }

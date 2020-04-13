@@ -16,7 +16,6 @@ export const signin = (formProps, callback) => async dispatch => {
       "/api/signin",
       formProps
     );
-    console.log(res.data.user);
     localStorage.setItem("user", JSON.stringify(res.data));
     localStorage.setItem("token", res.data.token);
     dispatch({
@@ -85,12 +84,19 @@ export const profile = () => async dispatch => {
   }
 };
 export const blog = (formProps, file, callback) => async () => {
-  const preUrl = await axios.get("/api/upload");
+  if (file) {
+    const preUrl = await axios.get("/api/upload");
     await axios.put(preUrl.data.url, file, { headers: { 'Content-Type': file.type } })
   
     await axios.post("/api/post", {
       ...formProps,
       imageUrl: preUrl.data.key
     });
+  } else {
+    await axios.post("/api/post", {
+      ...formProps,
+     
+    });
+  }
   callback();
 };
